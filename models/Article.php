@@ -10,7 +10,9 @@
     private string $title = "";
     private string $content = "";
     private ?DateTime $dateCreation = null;
-    private ?DateTime $dateUpdate = null;  
+    private ?DateTime $dateUpdate = null;
+    private ?int $nbComments = null;
+    private ?int $nbViews = null;
 
     /**
      * Setter pour l'id de l'utilisateur. 
@@ -126,5 +128,43 @@
     public function getDateUpdate() : ?DateTime 
     {
         return $this->dateUpdate;
+    }
+
+     /**
+      * Setter pour le nombre de commentaires.
+      * @param int $nbComments
+      * @return void
+      */
+    public function setNbComments(int $nbComments) : void
+    {
+        $this->nbComments = $nbComments;
+    }
+
+     /**
+      * Getter pour le nombre de commentaires.
+      * @return int|null
+      */
+    public function getNbComments() : ?int
+    {
+        return $this->nbComments;
+    }
+
+     /**
+      * Setter pour le nombre de vues.
+      * @param int $nbViews
+      * @return void
+      */
+    public function setNbViews(?int $nbViews) : void
+    {
+        $this->nbViews = $nbViews;
+    }
+
+     /**
+      * Getter pour le nombre de vues.
+      * @return int|null
+      */
+    public function getNbViews() : ?int
+    {
+        return $this->nbViews;
     }
  }

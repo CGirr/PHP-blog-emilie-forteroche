@@ -20,6 +20,22 @@ class ArticleManager extends AbstractEntityManager
         }
         return $articles;
     }
+
+    /**
+     * Récupère tous les articles ainsi que le nombre de commentaires associés.
+     * @return array
+     */
+    public function getAllArticlesWithCommentsCount() : array
+    {
+        $sql = "SELECT article.id, article.title, article.date_creation, article.nb_views, COUNT(comment.id) AS nb_comments FROM article LEFT JOIN comment on article.id = comment.id_article GROUP BY article.id";
+        $result = $this->db->query($sql);
+        $articles = [];
+
+        while ($data = $result->fetch()) {
+            $articles[] = new Article($data);
+        }
+        return $articles;
+    }
     
     /**
      * Récupère un article par son id.
@@ -59,7 +75,7 @@ class ArticleManager extends AbstractEntityManager
      */
     public function addArticle(Article $article) : void
     {
-        $sql = "INSERT INTO article (id_user, title, content, date_creation) VALUES (:id_user, :title, :content, NOW())";
+        $sql = "INSERT INTO article (id_user, title, content, date_creation, date_update) VALUES (:id_user, :title, :content, NOW(), NOW())";
         $this->db->query($sql, [
             'id_user' => $article->getIdUser(),
             'title' => $article->getTitle(),
@@ -90,6 +106,17 @@ class ArticleManager extends AbstractEntityManager
     public function deleteArticle(int $id) : void
     {
         $sql = "DELETE FROM article WHERE id = :id";
+        $this->db->query($sql, ['id' => $id]);
+    }
+
+    /**
+     * Augmente le nombre de vues de l'article
+     * @param int $id
+     * @return void
+     */
+    public function incrementViews(int $id) : void
+    {
+        $sql = "UPDATE article SET nb_views = nb_views + 1 WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
     }
 }

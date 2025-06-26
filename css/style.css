@@ -313,6 +313,25 @@ a.info {
     color: white;
 }
 
+.adminTable table, th, td {
+    padding: 10px;
+    border: 15px transparent;
+    border-collapse: collapse;
+    color: white;
+}
+
+.adminTable th {
+    background-color: #99a140;
+}
+
+.adminTable tr:nth-child(odd) {
+    background-color: var(--headerColor);
+}
+
+.adminTable tr:nth-child(even) {
+    background-color: var(--commentPaleColor);
+}
+
 .articleLine {
     display: flex; 
 }

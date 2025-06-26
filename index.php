@@ -1,5 +1,4 @@
 <?php
-
 require_once 'config/config.php';
 require_once 'config/autoload.php';
 
@@ -62,6 +61,11 @@ try {
         case 'showUpdateArticleForm':
             $adminController = new AdminController();
             $adminController->showUpdateArticleForm();
+            break;
+
+        case 'monitoring':
+            $adminController = new AdminController();
+            $adminController->showMonitoring();
             break;
 
         case 'updateArticle': 

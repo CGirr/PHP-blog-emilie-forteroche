@@ -65,5 +65,4 @@ class CommentManager extends AbstractEntityManager
         $result = $this->db->query($sql, ['id' => $comment->getId()]);
         return $result->rowCount() > 0;
     }
-
 }

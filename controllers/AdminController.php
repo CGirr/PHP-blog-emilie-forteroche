@@ -123,6 +123,21 @@ class AdminController {
         ]);
     }
 
+    public function showMonitoring() : void
+    {
+        $this->checkIfUserIsConnected();
+
+        //On récupère tous les articles avec leur nombre de commentaires
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getAllArticlesWithCommentsCount();
+
+        //On affiche la page de monitoring
+        $view = new View("Monitoring");
+        $view->render("monitoring", [
+            'articles' => $articles
+        ]);
+    }
+
     /**
      * Ajout et modification d'un article. 
      * On sait si un article est ajouté car l'id vaut -1.
