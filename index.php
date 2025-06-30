@@ -68,7 +68,7 @@ try {
             $adminController->showMonitoring();
             break;
 
-        case 'updateArticle': 
+        case 'updateArticle':
             $adminController = new AdminController();
             $adminController->updateArticle();
             break;

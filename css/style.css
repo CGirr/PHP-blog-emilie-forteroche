@@ -322,6 +322,12 @@ a.info {
 
 .adminTable th {
     background-color: #99a140;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.adminTable a {
+    cursor: pointer;
 }
 
 .adminTable tr:nth-child(odd) {

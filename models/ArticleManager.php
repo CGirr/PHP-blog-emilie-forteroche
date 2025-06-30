@@ -28,6 +28,38 @@ class ArticleManager extends AbstractEntityManager
     public function getAllArticlesWithCommentsCount() : array
     {
         $sql = "SELECT article.id, article.title, article.date_creation, article.nb_views, COUNT(comment.id) AS nb_comments FROM article LEFT JOIN comment on article.id = comment.id_article GROUP BY article.id";
+
+        if (isset($_GET['sort'] ) && isset($_GET['order'])) {
+            switch ([$_GET['sort'], $_GET['order']]) {
+                case ['title', 'desc'] :
+                    $sql .= " ORDER BY article.title DESC";
+                    break;
+                case ['title', 'asc'] :
+                    $sql .= " ORDER BY article.title ASC";
+                    break;
+                case ['views', 'desc'] :
+                    $sql .= " ORDER BY nb_views DESC";
+                    break;
+                case ['views', 'asc'] :
+                    $sql .= " ORDER BY nb_views ASC";
+                    break;
+                case ['comments', 'desc'] :
+                    $sql .= " ORDER BY nb_comments DESC";
+                    break;
+                case ['comments', 'asc'] :
+                    $sql .= " ORDER BY nb_comments ASC";
+                    break;
+                case ['date', 'desc'] :
+                    $sql .= " ORDER BY article.date_creation DESC";
+                    break;
+                case ['date', 'asc'] :
+                    $sql .= " ORDER BY article.date_creation ASC";
+                    break;
+            }
+        }  else {
+            $sql = $sql;
+        }
+
         $result = $this->db->query($sql);
         $articles = [];
 

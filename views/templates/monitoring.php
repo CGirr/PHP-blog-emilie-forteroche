@@ -7,10 +7,10 @@
 <table class="adminTable">
     <thead>
         <tr>
-            <th>Titre de l'article</th>
-            <th>Nombre de vues</th>
-            <th>Nombre de commentaires</th>
-            <th>Date de publication</th>
+            <th><a href='?action=monitoring&sort=title&order=<?= $order?>'>Titre de l'article <?= $arrowTitle ?></a></th>
+            <th><a href='?action=monitoring&sort=views&order=<?= $order?>'>Nombre de vues <?= $arrowViews ?></a></th>
+            <th><a href='?action=monitoring&sort=comments&order=<?= $order?>'>Nombre de commentaires <?= $arrowComments ?></a></th>
+            <th><a href='?action=monitoring&sort=date&order=<?= $order?>'>Date de publication <?= $arrowDate ?></a></th>
         </tr>
     </thead>
     <tbody>

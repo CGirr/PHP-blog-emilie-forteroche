@@ -123,6 +123,10 @@ class AdminController {
         ]);
     }
 
+    /**
+     * Affichage de la page de monitoring
+     * @return void
+     */
     public function showMonitoring() : void
     {
         $this->checkIfUserIsConnected();
@@ -131,12 +135,53 @@ class AdminController {
         $articleManager = new ArticleManager();
         $articles = $articleManager->getAllArticlesWithCommentsCount();
 
-        //On affiche la page de monitoring
-        $view = new View("Monitoring");
-        $view->render("monitoring", [
-            'articles' => $articles
-        ]);
-    }
+        // Boucle if permettant de cycler l'ordre de tri
+        $order = 'asc';
+        if (isset($_GET['order']) && $_GET['order'] == 'asc') {
+            $order = 'desc';
+        }
+
+        $arrowTitle = $arrowViews = $arrowComments = $arrowDate = '&#9652;/&#9662;';
+        if (isset($_GET['sort']) && isset($_GET['order'])) {
+            switch ([$_GET['sort'], $_GET['order']]) {
+                case ['title', 'asc'] :
+                    $arrowTitle = '&#9652;';
+                    break;
+                case ['title', 'desc'] :
+                    $arrowTitle = '&#9662;';
+                    break;
+                case ['views', 'asc'] :
+                    $arrowViews = '&#9652;';
+                    break;
+                case ['views', 'desc'] :
+                    $arrowViews = '&#9662;';
+                    break;
+                case ['comments', 'asc'] :
+                    $arrowComments = '&#9652;';
+                    break;
+                case ['comments', 'desc'] :
+                    $arrowComments = '&#9662;';
+                    break;
+                case ['date', 'asc'] :
+                    $arrowDate = '&#9652;';
+                    break;
+                case ['date', 'desc'] :
+                    $arrowDate = '&#9662;';
+                    break;
+            }
+        }
+
+            //On affiche la page de monitoring
+            $view = new View("Monitoring");
+            $view->render("monitoring", [
+                'articles' => $articles,
+                'order' => $order,
+                'arrowTitle' => $arrowTitle,
+                'arrowViews' => $arrowViews,
+                'arrowComments' => $arrowComments,
+                'arrowDate' => $arrowDate
+            ]);
+        }
 
     /**
      * Ajout et modification d'un article. 
