@@ -23,10 +23,17 @@ class ArticleController
     {
         // Récupération de l'id de l'article demandé.
         $id = Utils::request("id", -1);
+        $connected = null;
 
         $articleManager = new ArticleManager();
         $articleManager->incrementViews($id);
         $article = $articleManager->getArticleById($id);
+
+        if (isset($_SESSION['user'])) {
+            $connected = true;
+        } else {
+            $connected = false;
+        }
         
         if (!$article) {
             throw new Exception("L'article demandé n'existe pas.");
@@ -36,7 +43,7 @@ class ArticleController
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
         $view = new View($article->getTitle());
-        $view->render("detailArticle", ['article' => $article, 'comments' => $comments]);
+        $view->render("detailArticle", ['article' => $article, 'comments' => $comments, 'connected' => $connected]);
     }
 
     /**

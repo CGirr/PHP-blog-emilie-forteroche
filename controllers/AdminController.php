@@ -131,16 +131,17 @@ class AdminController {
     {
         $this->checkIfUserIsConnected();
 
-        //On récupère tous les articles avec leur nombre de commentaires
+        // On récupère tous les articles avec leur nombre de commentaires
         $articleManager = new ArticleManager();
         $articles = $articleManager->getAllArticlesWithCommentsCount();
 
-        // Boucle if permettant de cycler l'ordre de tri
+        // Boucle if permettant d'alterner l'ordre de tri
         $order = 'asc';
         if (isset($_GET['order']) && $_GET['order'] == 'asc') {
             $order = 'desc';
         }
 
+        // Switch permettant de changer le sens du triangle qui s'affiche en en-tête en fonction de l'ordre de tri
         $arrowTitle = $arrowViews = $arrowComments = $arrowDate = '&#9652;/&#9662;';
         if (isset($_GET['sort']) && isset($_GET['order'])) {
             switch ([$_GET['sort'], $_GET['order']]) {
@@ -171,7 +172,7 @@ class AdminController {
             }
         }
 
-            //On affiche la page de monitoring
+            // On affiche la page de monitoring
             $view = new View("Monitoring");
             $view->render("monitoring", [
                 'articles' => $articles,

@@ -33,9 +33,14 @@
                 echo '      <p class="content">' . Utils::format($comment->getContent()) . '</p>';
                 echo '  </div>';
                 echo '</li>';
-            }               
+                if ($connected == true) {
+                    echo '<li>';
+                    echo '<a class="deleteComment" href="?action=deleteComment&idComment=' . $comment->getId() . ' " ' . Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?"),'>Supprimer</a>';
+                    echo '</li>';
+                }
+            }
             echo '</ul>';
-        } 
+        }
     ?>
 
     <form action="index.php" method="post" class="foldedCorner">

@@ -273,6 +273,15 @@ a.info {
     color: var(--quoteColor);
 }
 
+.comments .deleteComment {
+    cursor: pointer;
+    padding: 5px 10px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    background-color: var(--titleColor);
+}
+
 /* On redéfinit certaines parties du "info" pour l'affichage dans les commentaires */
 .detailComment .info {
     margin: 5px 0 5px 0;
