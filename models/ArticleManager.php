@@ -31,10 +31,15 @@ class ArticleManager extends AbstractEntityManager
         $sql = "SELECT article.id, article.title, article.date_creation, article.nb_views, COUNT(comment.id) AS nb_comments FROM article LEFT JOIN comment on article.id = comment.id_article GROUP BY article.id";
 
         if (isset($_GET['sort'] ) && isset($_GET['order'])) {
+
+            //On restreint les valeurs possibles pour éviter les injections SQL, on lève une exception sinon
             $orderMap = ["asc" => "asc", "desc" => "desc", ];
             $sortingOrder = $orderMap[$_GET['order']] ?? throw new Exception("Invalid order parameter");
-            $columnMap = ["title" => "title", "nb_views" => "nb_views", "nb_comments" => "nb_comments", "date" => "date"];
+            $columnMap = ["title" => "title", "nb_views" => "nb_views", "nb_comments" => "nb_comments", "date_creation" => "date_creation"];
             $sortingColumn = $columnMap[$_GET['sort']] ?? throw new Exception("Invalid column parameter");
+
+            //On ajoute le tri à la requête SQL
+            //La boucle sert à gérer le cas où l'on clique sur la colonne nombre de commentaires
             if($_GET['sort'] == 'nb_comments') {
                 $sql .= " ORDER BY nb_comments" . " " . $sortingOrder;
             } else {
