@@ -5,6 +5,7 @@ class CommentController
     /**
      * Ajoute un commentaire.
      * @return void
+     * @throws Exception
      */
     public function addComment() : void
     {
@@ -45,7 +46,14 @@ class CommentController
         Utils::redirect("showArticle", ['id' => $idArticle]);
     }
 
+    /**
+     * @return void
+     * @throws Exception
+     */
     public function deleteComment() : void {
+
+        Utils::checkIfUserIsConnected();
+
         $idComment = Utils::request("idComment");
 
         // On vérifie que les données sont valides.
@@ -60,7 +68,7 @@ class CommentController
             throw new Exception("Le commentaire n'existe pas.");
         }
 
-        //On récupère l'id de l'article pour la redirection
+        // On récupère l'id de l'article pour la redirection
         $idArticle = $comment->getIdArticle();
 
         // On supprime le commentaire

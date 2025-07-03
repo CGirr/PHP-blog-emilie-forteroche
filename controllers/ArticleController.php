@@ -18,12 +18,12 @@ class ArticleController
     /**
      * Affiche le détail d'un article.
      * @return void
+     * @throws Exception
      */
     public function showArticle() : void
     {
         // Récupération de l'id de l'article demandé.
         $id = Utils::request("id", -1);
-        $connected = null;
 
         $articleManager = new ArticleManager();
         $articleManager->incrementViews($id);
@@ -60,7 +60,8 @@ class ArticleController
      * Affiche la page "à propos".
      * @return void
      */
-    public function showApropos() {
+    public function showApropos(): void
+    {
         $view = new View("A propos");
         $view->render("apropos");
     }
