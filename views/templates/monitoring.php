@@ -8,8 +8,8 @@
     <thead>
         <tr>
             <th><a href='?action=monitoring&sort=title&order=<?= $order?>'>Titre de l'article <?= $arrowTitle ?></a></th>
-            <th><a href='?action=monitoring&sort=views&order=<?= $order?>'>Nombre de vues <?= $arrowViews ?></a></th>
-            <th><a href='?action=monitoring&sort=comments&order=<?= $order?>'>Nombre de commentaires <?= $arrowComments ?></a></th>
+            <th><a href='?action=monitoring&sort=nb_views&order=<?= $order?>'>Nombre de vues <?= $arrowViews ?></a></th>
+            <th><a href='?action=monitoring&sort=nb_comments&order=<?= $order?>'>Nombre de commentaires <?= $arrowComments ?></a></th>
             <th><a href='?action=monitoring&sort=date&order=<?= $order?>'>Date de publication <?= $arrowDate ?></a></th>
         </tr>
     </thead>

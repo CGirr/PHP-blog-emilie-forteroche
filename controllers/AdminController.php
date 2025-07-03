@@ -151,16 +151,16 @@ class AdminController {
                 case ['title', 'desc'] :
                     $arrowTitle = '&#9662;';
                     break;
-                case ['views', 'asc'] :
+                case ['nb_views', 'asc'] :
                     $arrowViews = '&#9652;';
                     break;
-                case ['views', 'desc'] :
+                case ['nb_views', 'desc'] :
                     $arrowViews = '&#9662;';
                     break;
-                case ['comments', 'asc'] :
+                case ['nb_comments', 'asc'] :
                     $arrowComments = '&#9652;';
                     break;
-                case ['comments', 'desc'] :
+                case ['nb_comments', 'desc'] :
                     $arrowComments = '&#9662;';
                     break;
                 case ['date', 'asc'] :
