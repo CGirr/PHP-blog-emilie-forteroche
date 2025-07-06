@@ -3,8 +3,8 @@
  * Contrôleur de la partie admin.
  */
  
-class AdminController {
-
+class AdminController
+{
     /**
      * Affiche la page d'administration.
      * @return void
@@ -127,7 +127,7 @@ class AdminController {
 
         // Boucle if permettant d'alterner l'ordre de tri
         $order = 'asc';
-        if (isset($_GET['order']) && $_GET['order'] == 'asc') {
+        if (isset($_GET['order']) && $_GET['order'] === 'asc') {
             $order = 'desc';
         }
 
@@ -162,17 +162,17 @@ class AdminController {
             }
         }
 
-            // On affiche la page de monitoring
-            $view = new View("Monitoring");
-            $view->render("monitoring", [
-                'articles' => $articles,
-                'order' => $order,
-                'arrowTitle' => $arrowTitle,
-                'arrowViews' => $arrowViews,
-                'arrowComments' => $arrowComments,
-                'arrowDate' => $arrowDate
-            ]);
-        }
+        // On affiche la page de monitoring
+        $view = new View("Monitoring");
+        $view->render("monitoring", [
+            'articles' => $articles,
+            'order' => $order,
+            'arrowTitle' => $arrowTitle,
+            'arrowViews' => $arrowViews,
+            'arrowComments' => $arrowComments,
+            'arrowDate' => $arrowDate
+        ]);
+    }
 
     /**
      * Ajout et modification d'un article.

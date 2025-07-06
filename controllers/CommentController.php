@@ -50,8 +50,8 @@ class CommentController
      * @return void
      * @throws Exception
      */
-    public function deleteComment() : void {
-
+    public function deleteComment() : void
+    {
         Utils::checkIfUserIsConnected();
 
         $idComment = Utils::request("idComment");

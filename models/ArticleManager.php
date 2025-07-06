@@ -45,8 +45,6 @@ class ArticleManager extends AbstractEntityManager
             } else {
                 $sql .= " ORDER BY article." . $sortingColumn . " " . $sortingOrder;
             }
-        }  else {
-            $sql = $sql;
         }
 
         $result = $this->db->query($sql);
