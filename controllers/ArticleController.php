@@ -22,12 +22,10 @@ class ArticleController
      */
     public function showArticle() : void
     {
+        $article = null;
+
         // Récupération de l'id de l'article demandé.
         $id = Utils::request("id", -1);
-
-        $articleManager = new ArticleManager();
-        $articleManager->incrementViews($id);
-        $article = $articleManager->getArticleById($id);
 
         if (isset($_SESSION['user'])) {
             $connected = true;
@@ -37,6 +35,10 @@ class ArticleController
         
         if (!$article) {
             throw new Exception("L'article demandé n'existe pas.");
+        } else {
+            $articleManager = new ArticleManager();
+            $article = $articleManager->getArticleById($id);
+            $articleManager->incrementViews($id);
         }
 
         $commentManager = new CommentManager();
