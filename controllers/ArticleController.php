@@ -22,7 +22,17 @@ class ArticleController
      */
     public function showArticle() : void
     {
-        $article = null;
+        $id = Utils::request("id", -1);
+
+        // Vérification de la validité de l'id
+        if (!is_numeric($id) || (int)$id != $id) {
+            throw new Exception("L'id de l'article est vide ou n'est pas valide.");
+        }
+
+        $articleManager = new ArticleManager();
+        $article = $articleManager->getArticleById($id);
+        $articleManager->incrementViews($id);
+
 
         // Récupération de l'id de l'article demandé.
         $id = Utils::request("id", -1);
@@ -35,10 +45,6 @@ class ArticleController
         
         if (!$article) {
             throw new Exception("L'article demandé n'existe pas.");
-        } else {
-            $articleManager = new ArticleManager();
-            $article = $articleManager->getArticleById($id);
-            $articleManager->incrementViews($id);
         }
 
         $commentManager = new CommentManager();
