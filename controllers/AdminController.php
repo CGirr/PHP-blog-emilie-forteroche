@@ -153,10 +153,10 @@ class AdminController
                 case ['nb_comments', 'desc'] :
                     $arrowComments = '&#9662;';
                     break;
-                case ['date', 'asc'] :
+                case ['date_creation', 'asc'] :
                     $arrowDate = '&#9652;';
                     break;
-                case ['date', 'desc'] :
+                case ['date_creation', 'desc'] :
                     $arrowDate = '&#9662;';
                     break;
             }

@@ -58,7 +58,7 @@ class CommentController
 
         // On vérifie que les données sont valides.
         if (empty($idComment)) {
-            throw new Exception("Veuillez sélectionner un article.");
+            throw new Exception("Veuillez sélectionner un commentaire.");
         }
 
         // On vérifie que le commentaire existe.
